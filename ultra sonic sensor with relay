@@ -1,0 +1,40 @@
+int trig = 12;
+int echo = 11;
+int ping;
+int r = 7;
+int g = 6;
+int relay = A0;
+void setup() {
+  // put your setup code here, to run once:
+pinMode(trig, OUTPUT);
+pinMode(echo, INPUT);
+pinMode(r, OUTPUT);
+pinMode(g, OUTPUT);
+pinMode(relay, OUTPUT);
+Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+digitalWrite(trig, LOW);
+delayMicroseconds(10);
+digitalWrite(trig, HIGH);
+delayMicroseconds(10);
+digitalWrite(trig, LOW);
+ping = pulseIn(echo, HIGH);
+delay(25);
+Serial.println(ping);
+if((ping <= 2000)&&(relay<=2000))
+{
+  digitalWrite(r, HIGH);
+  digitalWrite(g, LOW);
+  digitalWrite(relay, HIGH);
+}
+else
+{
+  digitalWrite(r, LOW);
+  digitalWrite(g, HIGH);
+  digitalWrite(relay, LOW);
+  
+}
+}
